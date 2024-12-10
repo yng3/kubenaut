@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Under Construction - Unicorn Waffles Inc.</title>
+
+<style>
+  body {
+    font-family: "Comic Sans MS", sans-serif;
+    background: linear-gradient(45deg, #ffeecf, #ffd5e5);
+    text-align: center;
+    padding: 50px;
+    color: #333;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin: 0.5em 0;
+  }
+
+  .unicorn {
+    font-size: 10em;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0.5em auto;
+  }
+
+  .construction-sign {
+    font-size: 3em;
+    margin: 1em 0;
+    display: inline-block;
+    transform: rotate(-10deg);
+  }
+
+  a {
+    text-decoration: none;
+    background: #f9cc9d;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    color: #333;
+    transition: background 0.3s;
+  }
+
+  a:hover {
+    background: #ffc4c4;
+  }
+
+  /* Funny placeholder animations */
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .unicorn:hover {
+    animation: wiggle 0.5s infinite;
+  }
+
+  .footer {
+    margin-top: 3em;
+    font-size: 0.9em;
+    color: #555;
+  }
+
+  .clouds {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .cloud {
+    position: absolute;
+    top: 20vh;
+    width: 200px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.6;
+    animation: moveClouds 30s linear infinite;
+  }
+
+  .cloud:nth-child(2) {
+    top: 40vh;
+    width: 250px;
+    animation-duration: 40s;
+    animation-delay: 5s;
+  }
+
+  .cloud:nth-child(3) {
+    top: 60vh;
+    width: 180px;
+    animation-duration: 35s;
+    animation-delay: 10s;
+  }
+
+  @keyframes moveClouds {
+    0% { transform: translateX(-20%); }
+    100% { transform: translateX(120%); }
+  }
+</style>
+</head>
+<body>
+
+<div class="clouds">
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+</div>
+
+<h1><span class="unicorn">🦄</span><br>Under Construction</h1>
+<div class="construction-sign">🚧</div>
+<p>Hello there, weary internet traveler. It appears you’ve stumbled upon a digital wasteland of half-baked code and donut crumbs. While our team of highly skilled narwhals and waffle-engineers are working diligently to build something magnificent, there’s nothing to see here yet.  
+</p>
+<p>Feel free to check back soon, or just click the button below to humor us. You never know what might happen!</p>
+
+<p><a href="#">Click Me and Nothing Will Happen</a></p>
+
+<div class="footer">
+  &copy; 2024 Unicorn Waffles Inc. | All rights reserved (except the waffles, those are public domain).
+</div>
+
+</body>
+</html>
