@@ -1,41 +1,67 @@
-const canvas = document.getElementById('background');
-const ctx = canvas.getContext('2d');
 const enterButton = document.getElementById('enter');
 const interfaceBox = document.getElementById('interface');
 const cyberspace = document.getElementById('cyberspace');
-const floatingElements = document.querySelectorAll('.floating-element');
+const sections = document.querySelectorAll('section');
+const navButtons = document.querySelectorAll('nav button');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-// Hide Landing Page & Enter Cyberspace
+// Hide landing & show cyberspace
 enterButton.addEventListener('click', () => {
-    interfaceBox.style.opacity = "0";  // Fade out
-    interfaceBox.style.transform = "scale(1.2)";
-
-    setTimeout(() => {
-        interfaceBox.style.display = "none";  // Completely remove from visibility
-        cyberspace.style.opacity = "1";  // Fade in
-        cyberspace.style.transform = "scale(1)";
-
-        // Reveal floating elements gradually
-        floatingElements.forEach((element, index) => {
-            setTimeout(() => {
-                element.classList.add("active");
-            }, index * 800);
-        });
-    }, 1000);
+    interfaceBox.style.display = "none";
+    cyberspace.style.opacity = "1";
 });
 
-// Ensure Interface Doesn't Pop Back Up
-document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-        interfaceBox.style.display = "none";
+// Navigation Handling
+navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        sections.forEach(section => section.classList.add('hidden'));
+        document.getElementById(button.id.replace('-tab', '')).classList.remove('hidden');
+    });
+});
+
+// Content Upload
+const upload = document.getElementById('upload');
+const gallery = document.getElementById('gallery');
+
+upload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        gallery.appendChild(img);
     }
 });
 
-// Prevent UI from glitching when resizing
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+// Shop Feature
+const store = document.getElementById('store');
+const addProduct = document.getElementById('add-product');
+
+addProduct.addEventListener('click', () => {
+    const productName = prompt("Enter product name:");
+    const productImage = prompt("Enter image URL:");
+    const productPrice = prompt("Enter price:");
+
+    if (productName && productImage && productPrice) {
+        const product = document.createElement('div');
+        product.classList.add('product');
+        product.innerHTML = `<img src="${productImage}" alt="${productName}">
+                             <h3>${productName}</h3>
+                             <p>$${productPrice}</p>
+                             <button class="buy-btn">Buy Now</button>`;
+        store.appendChild(product);
+    }
+});
+
+// Bio Input
+const bioInput = document.getElementById('bio-input');
+const saveBio = document.getElementById('save-bio');
+
+saveBio.addEventListener('click', () => {
+    localStorage.setItem('userBio', bioInput.value);
+    alert("Bio saved!");
+});
+
+// Load Saved Bio
+window.addEventListener('load', () => {
+    const savedBio = localStorage.getItem('userBio');
+    if (savedBio) bioInput.value = savedBio;
 });
