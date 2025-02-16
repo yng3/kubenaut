@@ -104,10 +104,6 @@ section {
     margin-top: 10px;
 }
 
-.hidden {
-    display: none !important; /* Fully removes element instead of just fading it */
-}
-
 .interface {
     position: absolute;
     z-index: 2;
