@@ -8,6 +8,7 @@ const floatingElements = document.querySelectorAll('.floating-element');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Light Orbs Floating in Background
 class LightOrb {
     constructor(x, y, radius, color, speedX, speedY) {
         this.x = x;
@@ -65,7 +66,7 @@ function animate() {
 
 animate();
 
-// Transition into Cyberspace & Reveal Elements
+// Activate the Cyberspace Experience on Click
 enterButton.addEventListener('click', () => {
     interfaceBox.style.opacity = "0";
     interfaceBox.style.transform = "scale(1.2)";
@@ -75,7 +76,7 @@ enterButton.addEventListener('click', () => {
         cyberspace.style.opacity = "1";
         cyberspace.style.transform = "scale(1)";
 
-        // Reveal floating elements one by one
+        // Reveal floating elements with delay
         floatingElements.forEach((element, index) => {
             setTimeout(() => {
                 element.classList.add("active");
@@ -83,4 +84,30 @@ enterButton.addEventListener('click', () => {
         });
 
     }, 1000);
+});
+
+// Mouse Move Effect for Depth
+document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+
+    cyberspace.style.transform = `translateX(${x}px) translateY(${y}px)`;
+});
+
+// Click Interaction for Floating Elements
+floatingElements.forEach(element => {
+    element.addEventListener('click', () => {
+        element.style.transform = 'scale(1.2)';
+        element.style.backgroundColor = 'rgba(255, 100, 255, 0.6)';
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+            element.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        }, 500);
+    });
+});
+
+// Resize canvas when window resizes
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
