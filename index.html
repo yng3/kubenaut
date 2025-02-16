@@ -16,13 +16,36 @@
     </div>
 
     <div id="cyberspace" class="hidden">
-        <h2>Explore Your Space</h2>
-        <p>Move freely using your keyboard or mouse.</p>
-        <div class="elements-container">
-            <div class="floating-element" id="obj1">Artifact 1</div>
-            <div class="floating-element" id="obj2">Artifact 2</div>
-            <div class="floating-element" id="obj3">Artifact 3</div>
-        </div>
+        <nav>
+            <button id="home-tab">Home</button>
+            <button id="content-tab">My Work</button>
+            <button id="shop-tab">Shop</button>
+            <button id="about-tab">About</button>
+        </nav>
+
+        <section id="home">
+            <h2>Welcome to Your Brand</h2>
+            <p>Build your brand, showcase your work, and connect with your audience.</p>
+        </section>
+
+        <section id="content" class="hidden">
+            <h2>My Work</h2>
+            <div id="gallery"></div>
+            <input type="file" id="upload" accept="image/*">
+        </section>
+
+        <section id="shop" class="hidden">
+            <h2>Shop</h2>
+            <div id="store"></div>
+            <button id="add-product">Add Product</button>
+        </section>
+
+        <section id="about" class="hidden">
+            <h2>About Me</h2>
+            <p>This is your space. Add your bio, links, and contact info.</p>
+            <input type="text" id="bio-input" placeholder="Enter your bio">
+            <button id="save-bio">Save</button>
+        </section>
     </div>
 
     <script src="script.js"></script>
