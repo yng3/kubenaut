@@ -1,25 +1,23 @@
-const canvas = document.getElementById('background');
-const ctx = canvas.getContext('2d');
 const enterButton = document.getElementById('enter');
 const interfaceBox = document.getElementById('interface');
 const cyberspace = document.getElementById('cyberspace');
-const sections = document.querySelectorAll('section');
 const navButtons = document.querySelectorAll('nav button');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const sections = document.querySelectorAll('section');
 
 // Hide Landing & Show Cyberspace
 enterButton.addEventListener('click', () => {
-    interfaceBox.style.display = "none";
-    cyberspace.style.opacity = "1";
+    interfaceBox.classList.add("hidden");
+    setTimeout(() => {
+        interfaceBox.style.display = "none";
+        cyberspace.style.opacity = "1";
+    }, 1000);
 });
 
 // Navigation Handling
 navButtons.forEach(button => {
     button.addEventListener('click', () => {
         sections.forEach(section => section.classList.add('hidden'));
-        document.getElementById(button.id.replace('-tab', '')).classList.remove('hidden');
+        document.getElementById(button.getAttribute('data-section')).classList.remove('hidden');
     });
 });
 
