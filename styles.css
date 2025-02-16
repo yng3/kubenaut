@@ -25,6 +25,23 @@ canvas {
     height: 100%;
 }
 
+.interface {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.5s ease-out, opacity 1s ease-in-out;
+}
+
+.interface.hidden {
+    opacity: 0;
+    transform: scale(1.2);
+    pointer-events: none;
+}
+
 .btn {
     background: linear-gradient(90deg, #ff00ff, #0000ff);
     padding: 10px 20px;
@@ -103,61 +120,3 @@ section {
     width: 80%;
     margin-top: 10px;
 }
-
-.interface {
-    position: absolute;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    backdrop-filter: blur(20px);
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform 0.5s ease-out, opacity 1s ease-in-out;
-    opacity: 1;
-}
-
-.interface.hidden {
-    opacity: 0;
-    transform: scale(1.2);
-    pointer-events: none;  /* Prevents ghost clicks */
-}
-
-#cyberspace {
-    position: absolute;
-    z-index: 3;
-    color: white;
-    text-align: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
-}
-
-.elements-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.floating-element {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
-    transform: translateY(50px);
-    opacity: 0;
-    position: absolute;
-}
-
-.floating-element.active {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-#obj1 { left: -200px; }
-#obj2 { left: 0; }
-#obj3 { left: 200px; }
