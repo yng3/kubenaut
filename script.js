@@ -1,33 +1,56 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Detect User OS and Adapt Theme
-    const os = navigator.userAgent.toLowerCase();
-    let theme = "default";
+const canvas = document.getElementById('cyber-world');
+const ctx = canvas.getContext('2d');
 
-    if (os.includes('windows')) {
-        theme = "Windows";
-    } else if (os.includes('mac')) {
-        theme = "macOS";
-    } else if (os.includes('linux')) {
-        theme = "Linux";
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+class Particle {
+    constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
     }
 
-    document.title = `Portal - ${theme}`;
-    document.querySelector('.title').innerText = `Portal Interface - ${theme}`;
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-    // Close Button Simulation
-    document.querySelector('.close').addEventListener('click', function () {
-        document.querySelector('.window').style.display = 'none';
+        if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+            this.speedX *= -1;
+        }
+        if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+            this.speedY *= -1;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+const particles = [];
+for (let i = 0; i < 200; i++) {
+    particles.push(new Particle(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        Math.random() * 5 + 1,
+        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 2
+    ));
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
     });
+    requestAnimationFrame(animate);
+}
 
-    // Window Resize Simulation
-    document.querySelector('.maximize').addEventListener('click', function () {
-        document.querySelector('.window').style.width = "90vw";
-        document.querySelector('.window').style.height = "90vh";
-    });
-
-    // Minimize Simulation
-    document.querySelector('.minimize').addEventListener('click', function () {
-        document.querySelector('.window').style.opacity = "0.5";
-    });
-
-});
+animate();
