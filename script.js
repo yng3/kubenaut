@@ -8,6 +8,28 @@ const floatingElements = document.querySelectorAll('.floating-element');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Player Movement Variables
+let posX = 0;
+let posY = 0;
+const speed = 5;
+
+// Movement Controls
+document.addEventListener('keydown', (e) => {
+    if (e.key === "ArrowUp" || e.key === "w") posY -= speed;
+    if (e.key === "ArrowDown" || e.key === "s") posY += speed;
+    if (e.key === "ArrowLeft" || e.key === "a") posX -= speed;
+    if (e.key === "ArrowRight" || e.key === "d") posX += speed;
+
+    updateSpace();
+});
+
+// Mouse Move Effect for Depth
+document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 50;
+    const y = (e.clientY / window.innerHeight - 0.5) * 50;
+    cyberspace.style.transform = `translate(${x}px, ${y}px)`;
+});
+
 // Light Orbs Floating in Background
 class LightOrb {
     constructor(x, y, radius, color, speedX, speedY) {
@@ -66,48 +88,13 @@ function animate() {
 
 animate();
 
-// Activate the Cyberspace Experience on Click
 enterButton.addEventListener('click', () => {
-    interfaceBox.style.opacity = "0";
-    interfaceBox.style.transform = "scale(1.2)";
-
-    setTimeout(() => {
-        interfaceBox.style.display = "none";
-        cyberspace.style.opacity = "1";
-        cyberspace.style.transform = "scale(1)";
-
-        // Reveal floating elements with delay
-        floatingElements.forEach((element, index) => {
-            setTimeout(() => {
-                element.classList.add("active");
-            }, index * 800);
-        });
-
-    }, 1000);
+    interfaceBox.style.display = "none";
+    cyberspace.style.opacity = "1";
+    cyberspace.style.transform = "scale(1)";
 });
 
-// Mouse Move Effect for Depth
-document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 40;
-    const y = (e.clientY / window.innerHeight - 0.5) * 40;
-
-    cyberspace.style.transform = `translateX(${x}px) translateY(${y}px)`;
-});
-
-// Click Interaction for Floating Elements
-floatingElements.forEach(element => {
-    element.addEventListener('click', () => {
-        element.style.transform = 'scale(1.2)';
-        element.style.backgroundColor = 'rgba(255, 100, 255, 0.6)';
-        setTimeout(() => {
-            element.style.transform = 'scale(1)';
-            element.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-        }, 500);
-    });
-});
-
-// Resize canvas when window resizes
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
+// Update Space Position
+function updateSpace() {
+    cyberspace.style.transform = `translate(${posX}px, ${posY}px)`;
+}
