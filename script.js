@@ -1,5 +1,8 @@
 const canvas = document.getElementById('background');
 const ctx = canvas.getContext('2d');
+const enterButton = document.getElementById('enter');
+const interfaceBox = document.getElementById('interface');
+const cyberspace = document.getElementById('cyberspace');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -60,6 +63,18 @@ function animate() {
 }
 
 animate();
+
+// Transition into Cyberspace
+enterButton.addEventListener('click', () => {
+    interfaceBox.style.opacity = "0";
+    interfaceBox.style.transform = "scale(1.2)";
+
+    setTimeout(() => {
+        interfaceBox.style.display = "none";
+        cyberspace.style.opacity = "1";
+        cyberspace.style.transform = "scale(1)";
+    }, 1000);
+});
 
 // Depth Effect on Mouse Move
 document.addEventListener('mousemove', (e) => {
