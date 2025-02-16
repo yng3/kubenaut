@@ -14,7 +14,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    perspective: 1000px;
 }
 
 canvas {
@@ -33,7 +32,7 @@ canvas {
     backdrop-filter: blur(20px);
     padding: 20px;
     border-radius: 10px;
-    transition: transform 0.5s ease-out, opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out, transform 0.5s ease-out;
 }
 
 .interface.hidden {
@@ -53,7 +52,7 @@ canvas {
 }
 
 .btn:hover {
-    transform: translateZ(10px);
+    transform: translateY(-3px);
     background: #ff0055;
 }
 
@@ -67,13 +66,13 @@ nav {
 }
 
 nav button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: background 0.3s ease-in-out;
 }
 
 nav button:hover {
