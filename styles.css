@@ -66,3 +66,25 @@ canvas {
     transform: scale(0.8);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
+
+.elements-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.floating-element {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    transition: transform 1s ease-in-out, opacity 1.5s ease-in-out;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.floating-element.active {
+    transform: translateY(0);
+    opacity: 1;
+}
