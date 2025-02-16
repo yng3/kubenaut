@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 const enterButton = document.getElementById('enter');
 const interfaceBox = document.getElementById('interface');
 const cyberspace = document.getElementById('cyberspace');
+const floatingElements = document.querySelectorAll('.floating-element');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -42,7 +43,7 @@ class LightOrb {
 }
 
 const orbs = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 10; i++) {
     orbs.push(new LightOrb(
         Math.random() * canvas.width,
         Math.random() * canvas.height,
@@ -64,7 +65,7 @@ function animate() {
 
 animate();
 
-// Transition into Cyberspace
+// Transition into Cyberspace & Reveal Elements
 enterButton.addEventListener('click', () => {
     interfaceBox.style.opacity = "0";
     interfaceBox.style.transform = "scale(1.2)";
@@ -73,13 +74,13 @@ enterButton.addEventListener('click', () => {
         interfaceBox.style.display = "none";
         cyberspace.style.opacity = "1";
         cyberspace.style.transform = "scale(1)";
+
+        // Reveal floating elements one by one
+        floatingElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.add("active");
+            }, index * 800);
+        });
+
     }, 1000);
-});
-
-// Depth Effect on Mouse Move
-document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-    document.querySelector('.interface').style.transform = `translateZ(20px) rotateY(${x}deg) rotateX(${y}deg)`;
 });
